@@ -4,7 +4,7 @@
 #
 Name     : perl-Module-Implementation
 Version  : 0.09
-Release  : 8
+Release  : 9
 URL      : http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
 Summary  : 'Loads one of several alternate underlying implementations for a module'
@@ -43,7 +43,7 @@ fi
 %check
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=intel.com,localhost
+export no_proxy=localhost
 make TEST_VERBOSE=1 test
 
 %install
@@ -60,7 +60,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.22.0/Module/Implementation.pm
+/usr/lib/perl5/site_perl/5.24.0/Module/Implementation.pm
 
 %files doc
 %defattr(-,root,root,-)
