@@ -4,13 +4,14 @@
 #
 Name     : perl-Module-Implementation
 Version  : 0.09
-Release  : 14
-URL      : http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
-Source0  : http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
+Release  : 15
+URL      : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
+Source0  : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
 Summary  : 'Loads one of several alternate underlying implementations for a module'
 Group    : Development/Tools
 License  : Artistic-2.0
-Requires: perl-Module-Implementation-doc
+Requires: perl-Module-Implementation-license
+Requires: perl-Module-Implementation-man
 BuildRequires : perl(Module::Runtime)
 BuildRequires : perl(Test::Fatal)
 BuildRequires : perl(Test::Requires)
@@ -20,12 +21,20 @@ BuildRequires : perl(Try::Tiny)
 # NAME
 Module::Implementation - Loads one of several alternate underlying implementations for a module
 
-%package doc
-Summary: doc components for the perl-Module-Implementation package.
-Group: Documentation
+%package license
+Summary: license components for the perl-Module-Implementation package.
+Group: Default
 
-%description doc
-doc components for the perl-Module-Implementation package.
+%description license
+license components for the perl-Module-Implementation package.
+
+
+%package man
+Summary: man components for the perl-Module-Implementation package.
+Group: Default
+
+%description man
+man components for the perl-Module-Implementation package.
 
 
 %prep
@@ -38,7 +47,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 else
 %{__perl} Build.PL
 ./Build
@@ -53,6 +62,8 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/perl-Module-Implementation
+cp LICENSE %{buildroot}/usr/share/doc/perl-Module-Implementation/LICENSE
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot}
 else
@@ -67,6 +78,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 %defattr(-,root,root,-)
 /usr/lib/perl5/site_perl/5.26.1/Module/Implementation.pm
 
-%files doc
+%files license
 %defattr(-,root,root,-)
-%doc /usr/share/man/man3/*
+/usr/share/doc/perl-Module-Implementation/LICENSE
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man3/Module::Implementation.3
