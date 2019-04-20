@@ -4,13 +4,12 @@
 #
 Name     : perl-Module-Implementation
 Version  : 0.09
-Release  : 26
+Release  : 27
 URL      : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
-Summary  : 'Loads one of several alternate underlying implementations for a module'
+Summary  : Loads one of several alternate underlying implementations for a module
 Group    : Development/Tools
 License  : Artistic-2.0
-Requires: perl-Module-Implementation-license = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Module::Runtime)
 BuildRequires : perl(Test::Fatal)
@@ -20,23 +19,6 @@ BuildRequires : perl(Try::Tiny)
 %description
 # NAME
 Module::Implementation - Loads one of several alternate underlying implementations for a module
-
-%package dev
-Summary: dev components for the perl-Module-Implementation package.
-Group: Development
-Provides: perl-Module-Implementation-devel = %{version}-%{release}
-
-%description dev
-dev components for the perl-Module-Implementation package.
-
-
-%package license
-Summary: license components for the perl-Module-Implementation package.
-Group: Default
-
-%description license
-license components for the perl-Module-Implementation package.
-
 
 %prep
 %setup -q -n Module-Implementation-0.09
@@ -77,12 +59,3 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.1/Module/Implementation.pm
-
-%files dev
-%defattr(-,root,root,-)
-/usr/share/man/man3/Module::Implementation.3
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Module-Implementation/LICENSE
