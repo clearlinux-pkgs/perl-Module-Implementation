@@ -4,13 +4,14 @@
 #
 Name     : perl-Module-Implementation
 Version  : 0.09
-Release  : 27
+Release  : 28
 URL      : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
-Summary  : Loads one of several alternate underlying implementations for a module
+Summary  : 'Loads one of several alternate underlying implementations for a module'
 Group    : Development/Tools
 License  : Artistic-2.0
 Requires: perl-Module-Implementation-license = %{version}-%{release}
+Requires: perl(Module::Runtime)
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Module::Runtime)
 BuildRequires : perl(Test::Fatal)
@@ -46,7 +47,7 @@ license components for the perl-Module-Implementation package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -56,7 +57,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
