@@ -4,13 +4,14 @@
 #
 Name     : perl-Module-Implementation
 Version  : 0.09
-Release  : 28
+Release  : 29
 URL      : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
 Summary  : 'Loads one of several alternate underlying implementations for a module'
 Group    : Development/Tools
 License  : Artistic-2.0
 Requires: perl-Module-Implementation-license = %{version}-%{release}
+Requires: perl-Module-Implementation-perl = %{version}-%{release}
 Requires: perl(Module::Runtime)
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Module::Runtime)
@@ -40,8 +41,18 @@ Group: Default
 license components for the perl-Module-Implementation package.
 
 
+%package perl
+Summary: perl components for the perl-Module-Implementation package.
+Group: Default
+Requires: perl-Module-Implementation = %{version}-%{release}
+
+%description perl
+perl components for the perl-Module-Implementation package.
+
+
 %prep
 %setup -q -n Module-Implementation-0.09
+cd %{_builddir}/Module-Implementation-0.09
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -66,7 +77,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Module-Implementation
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Module-Implementation/LICENSE
+cp %{_builddir}/Module-Implementation-0.09/LICENSE %{buildroot}/usr/share/package-licenses/perl-Module-Implementation/844de8f2c4481b02d90c5606277f1a993fba7ede
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -79,7 +90,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Module/Implementation.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -87,4 +97,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Module-Implementation/LICENSE
+/usr/share/package-licenses/perl-Module-Implementation/844de8f2c4481b02d90c5606277f1a993fba7ede
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Module/Implementation.pm
