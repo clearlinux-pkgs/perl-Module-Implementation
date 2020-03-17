@@ -4,7 +4,7 @@
 #
 Name     : perl-Module-Implementation
 Version  : 0.09
-Release  : 29
+Release  : 30
 URL      : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz
 Summary  : 'Loads one of several alternate underlying implementations for a module'
@@ -101,4 +101,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/Module/Implementation.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Module/Implementation.pm
